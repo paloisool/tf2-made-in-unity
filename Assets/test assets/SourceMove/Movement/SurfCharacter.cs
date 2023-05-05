@@ -267,17 +267,17 @@ namespace Fragsurf.Movement
 
             _moveData.sprinting = Input.GetButton("Sprint");
 
-            if (Input.GetButtonDown("Crouch"))
-                _moveData.crouching = true;
+            if (TCKInput.GetAction("Crouch", EActionEvent.Down)) ;
+            _moveData.crouching = true;
 
-            if (!Input.GetButton("Crouch"))
-                _moveData.crouching = false;
+            if (TCKInput.GetAction("Crouch", EActionEvent.Down)) ;
+            _moveData.crouching = false;
 
             bool moveLeft = _moveData.horizontalAxis < 0f;
             bool moveRight = _moveData.horizontalAxis > 0f;
             bool moveFwd = _moveData.verticalAxis > 0f;
             bool moveBack = _moveData.verticalAxis < 0f;
-            bool jump = Input.GetButton("Jump");
+            bool jump = (TCKInput.GetAction("Jump", EActionEvent.Down));
 
             if (!moveLeft && !moveRight)
                 _moveData.sideMove = 0f;
@@ -293,10 +293,10 @@ namespace Fragsurf.Movement
             else if (moveBack)
                 _moveData.forwardMove = -moveConfig.acceleration;
 
-            if (TCKInput.GetAction("jumpBtn", EActionEvent.Down))
+            if (TCKInput.GetAction("Jump", EActionEvent.Down))
                 _moveData.wishJump = true;
 
-            if (TCKInput.GetAction("jumpBtn", EActionEvent.Down))
+            if (TCKInput.GetAction("Jump", EActionEvent.Down))
                 _moveData.wishJump = false;
 
             _moveData.viewAngles = _angles;
